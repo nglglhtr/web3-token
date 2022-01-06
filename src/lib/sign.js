@@ -2,7 +2,7 @@ import Base64 from 'base-64';
 import { timeSpan } from './timespan';
 
 /**
- * 
+ *
  * @param {function} signer - The signer function, must return Promise<string>
  * @param {any} body - Body to add to the sign
  */
@@ -13,13 +13,13 @@ export const sign = async (signer, expires_in = '1d', body = {}) => {
   validateInput(body);
 
   const data = {
-    'Web3-Token-Version': 1,
+    'Message': 'Welcome, Please sign the message to finish signing in.',
     'Expire-Date': expires_in_date,
     ...body,
   };
 
   const msg = buildMessage(data);
-  
+
   if(typeof signer === 'function') {
     var signature = await signer(msg);
   } else {
